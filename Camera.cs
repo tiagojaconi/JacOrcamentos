@@ -2,8 +2,8 @@ class Camera:Servicos{
 	private int qtdBnc = 0;
 	private int qtdP4 = 0;
 	private int qtdCaixaProtecao = 0;
-	private int qtdCaboRede = 0;
-	private int qtdCaboCoaxial = 0; 
+	private float qtdCaboRede = 0;
+	private float qtdCaboCoaxial = 0; 
 	private string tamanhoHd = " ";
 	private string modeloDvr = " ";
 	private string tamanhoFonte = " ";
@@ -45,12 +45,12 @@ class Camera:Servicos{
 			default:
 				//O codigo não chegará aqui se o valor informado ultrapassar 32 cameras. 
 			break;
-			qtdBnc = (pontos*2);
-			qtdP4 = pontos;
-			qtdCaixaProtecao = pontos;
-			qtdCaboRede = (pontos*2);
-			qtdCaboCoaxial = (pontos*50); 
 		}
+		qtdBnc = (pontos*2);
+		qtdP4 = pontos;
+		qtdCaixaProtecao = pontos;
+		qtdCaboRede = (pontos*2);
+		qtdCaboCoaxial = (pontos*50); 
 	}
 	public void SetQtdBnc(int bnc){
 		qtdBnc= bnc;
@@ -73,13 +73,13 @@ class Camera:Servicos{
 		public void SetQtdcaboRede(int rede){
 		qtdCaboRede= rede;
 	}
-	public int GetQtdcaboRede(){
+	public float GetQtdCaboRede(){
 		return qtdCaboRede;
 	}
-	public void SetQtdcaboCoaxial(int coaxial){
+	public void SetQtdCaboCoaxial(int coaxial){
 		qtdCaboCoaxial= coaxial;
 	}
-	public int GetQtdcaboCoaxial(){
+	public float GetQtdCaboCoaxial(){
 		return qtdCaboCoaxial;
 	}
 	public void SetTamanhoHd(string hd){

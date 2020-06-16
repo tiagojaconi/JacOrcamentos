@@ -55,8 +55,11 @@ class PessoaFisica:Cliente{
 				cpf = newCpf;
 			}
 
-		}catch (FormatException error){
+		}catch (FormatException letrasException){
 			Console.WriteLine("Não digite letras!!!");
+			verificacao = false;
+		}catch (Exception){
+			throw new Excecao ("Valores inválidos Cpf!!!");
 			verificacao = false;
 		}
 		return verificacao;

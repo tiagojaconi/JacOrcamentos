@@ -50,13 +50,19 @@ class PessoaJuridica:Cliente{
 			  resto = 11 - resto;
 			}
 			digito = digito + resto.ToString();
+			if (newCnpj.EndsWith(digito)){
+				cnpj = newCnpj;
+			}
 			verificacao= newCnpj.EndsWith(digito);
 		}
-		catch(FormatException error2){
+		catch(FormatException letrasException){
 			Console.WriteLine("Não digite letras!!!");
 			verificacao = false;
+		}catch (Exception){
+			throw new Excecao ("Valores inválidos CNPJ!!!");
+			verificacao = false;
 		}
-		return verificacao;
+		return verificacao;	
 	}
 	public string GetCnpj(){
 		return cnpj;
