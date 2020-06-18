@@ -4,9 +4,10 @@ using System.Text;
 
 class Orcamento{
 
-	public string  nome, razaoSocial, cpf, cnpj, telefone, endereco, tamanhoHd, tamanhoFonte, modeloDvr, modeloCentral;
-	public string cliente, servico, qtdPontos, qtdBnc, qtdP4, qtdCaixaProtecao, qtdCaboRede, qtdCabo, qtdBateria, qtdSirene;
-	public int tipoPessoa, tipoServico;
+	private string  nome, razaoSocial, cpf, cnpj, telefone, endereco, tamanhoHd, tamanhoFonte, modeloDvr, modeloCentral;
+	private string cliente, servico, qtdPontos, qtdBnc, qtdP4, qtdCaixaProtecao, qtdCaboRede, qtdCabo, qtdBateria, qtdSirene;
+	private int tipoPessoa, tipoServico, cabeamento =0, pontos=0;
+	private float valorServico = 0.0f;
 
 	public void GerarOrcamento(int tipoPessoa){
 
@@ -20,8 +21,9 @@ class Orcamento{
 			 razaoSocial = dados1ler.ReadLine(); 
 			 telefone = dados1ler.ReadLine();
 			 endereco = dados1ler.ReadLine();
-			 qtdPontos = dados1ler.ReadLine();
 			 servico = dados1ler.ReadLine();
+			 qtdPontos = dados1ler.ReadLine();
+			 pontos = Convert.ToInt32(qtdPontos);
 			 tipoServico = Convert.ToInt32(servico);
 			
 			if (tipoServico ==1){
@@ -52,8 +54,9 @@ class Orcamento{
 			razaoSocial = dados2ler.ReadLine(); 
 			telefone = dados2ler.ReadLine();
 			endereco = dados2ler.ReadLine();
-			qtdPontos = dados2ler.ReadLine();
 			servico = dados2ler.ReadLine();
+			qtdPontos = dados2ler.ReadLine();
+			pontos = Convert.ToInt32(qtdPontos);
 			tipoServico = Convert.ToInt32(servico);
 		
 			if (tipoServico ==1){
@@ -75,7 +78,9 @@ class Orcamento{
 			dados2ler.Close();
 			dados2.Close();
 		}
-
+		cabeamento = (Convert.ToInt32(qtdCaboRede)+Convert.ToInt32(qtdCabo));
+		Console.Clear();
+		
 		Console.WriteLine("***ORÇAMENTO SOLICITADO***");
 		Console.WriteLine("");
 		Console.WriteLine("Nome: "+nome);
@@ -88,9 +93,37 @@ class Orcamento{
 		Console.WriteLine("Telefone: "+telefone);
 		Console.WriteLine("Endereço: "+endereco);
 		
-		Console.WriteLine("Produtos necessários:");
-	
+		Console.WriteLine("\n***Produtos necessários***");
 
 
+		if (tipoServico ==1){
+
+			Console.WriteLine("\nInstalação de Sistema de Câmeras com "+qtdPontos+" câmeras:");
+
+			Console.WriteLine("Modelo do Dvr: "+modeloDvr);
+			Console.WriteLine("Capacidade do Hd: "+tamanhoHd);
+			Console.WriteLine("Capacidade da Fonte: "+tamanhoFonte);
+			Console.WriteLine("Conectores Bnc: "+qtdBnc);
+			Console.WriteLine("Conectores P4: "+qtdP4);
+			Console.WriteLine("Caixas de Proteção: "+qtdCaixaProtecao);
+			Console.WriteLine("Metragem Cabo de Rede: "+qtdCaboRede);
+			Console.WriteLine("Metragem Cabo de Coaxial: "+qtdCabo);
+
+			valorServico = ((pontos*96.0f)+(115.0f)+(cabeamento*0.29f));
+
+		}else{
+
+			Console.WriteLine("\nInstalação de Sistema de Alarmes com "+qtdPontos+" sensores:");
+
+			Console.WriteLine("Modelo da Central: "+modeloCentral);
+			Console.WriteLine("Quantidade de Baterias 12v 7A: "+qtdBateria);
+			Console.WriteLine("Quantidade de Sirenes: "+qtdSirene);
+			Console.WriteLine("Metragem Cabo de Rede: "+qtdCaboRede);
+			Console.WriteLine("Metragem Cabo de Alarme: "+qtdCabo);
+
+			valorServico = (((pontos+2.0f)*48.0f)+(230.0f)+(cabeamento*0.29f));
+			
+		}
+		Console.WriteLine("\nServiço de Instalação: R$ "+valorServico);
 	}	
 }
