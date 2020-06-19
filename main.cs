@@ -13,12 +13,14 @@ class MainClass {
 		FileStream dados2 = new FileStream("OrdemServico2.txt", FileMode.Open, FileAccess.Write);//Arquivo Pessoa Juridica
 		StreamWriter dados2escrever = new StreamWriter(dados2,Encoding.UTF8);
 
+		Console.Clear();
+
 		Console.WriteLine("\n*****Orçamento de Manutenção/ Instalação de Sistema de Segurança*****");
 		Console.WriteLine("***Investir em Segurança, é investir em qualidade de vida... Parabéns!!!***");
 		Console.WriteLine("\n**Dica: duvide sempre da qualidade do preço baixo, a dor de cabeça irá lhe acompanhar!!!**");
 
 		while (entrada==0){
-			Console.WriteLine("Preciso saber, quem é você? 1- Pessoa Fisica ou 2- Pessoa Juridica ");
+			Console.WriteLine("\nPreciso saber, quem é você? 1- Pessoa Fisica ou 2- Pessoa Juridica ");
 			entrada = Convert.ToInt32(Console.ReadLine());
 
 			switch (entrada){
@@ -168,10 +170,25 @@ class MainClass {
 		}
 		Console.WriteLine("Obrigado, já temos a informação necessária. Aguarde um momento para ver o valor do serviço...Tecle Enter para ver!!! ");
 		Console.ReadKey();
-		Console.Clear();
 
 		Orcamento meuOrcamento = new Orcamento();
 		meuOrcamento.GerarOrcamento(entrada);
+
+		Console.WriteLine ("\nValor correspondente apenas a mão de obra, quer proseguir para contato e orçamento completo?");
+		
+		entrada = 0;
+		while((entrada!=1)&&(entrada!=2)){
+			Console.WriteLine ("\n1- Sim, preciso muito. Ou 2- Não, ficou muito caro.");
+			entrada = Convert.ToInt32(Console.ReadLine());
+		}
+		if(entrada==1){
+
+			Console.WriteLine("***Parabéns, vamos entrar em contato... Vamos preparar um projeto especial para você!!!");
+			
+		}else{
+
+			throw new ArgumentException("Cliente preocupado com valor e não com Segurança!!!");
+		}
   }
 }
 	
