@@ -58,13 +58,14 @@ class PessoaFisica:Cliente{
 		}catch (FormatException letrasException){
 			Console.WriteLine("Não digite letras!!!");
 			verificacao = false;
+			return false;
 		}catch (Exception){
 			throw new Excecao ("Valores inválidos Cpf!!!");
 			verificacao = false;
+			return false;
 		}
 		return verificacao;
 	}
-
 	public string GetCpf(){
 		return cpf;
 	}
