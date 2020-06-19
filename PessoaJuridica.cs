@@ -19,7 +19,7 @@ class PessoaJuridica:Cliente{
 			newCnpj = newCnpj.Replace(".", "").Replace("/", "").Replace("-", "");
 
 			if (newCnpj.Length != 14){
-			 verificacao = false;
+			 return false;
 			}
 			
 			tempCnpj = newCnpj.Substring(0, 12);
@@ -54,15 +54,17 @@ class PessoaJuridica:Cliente{
 				cnpj = newCnpj;
 			}
 			verificacao= newCnpj.EndsWith(digito);
-		}
-		catch(FormatException letrasException){
+
+		}catch(FormatException letrasException){
 			Console.WriteLine("Não digite letras!!!");
 			verificacao = false;
+			return false;
 		}catch (Exception){
 			throw new Excecao ("Valores inválidos CNPJ!!!");
+			return false;
 			verificacao = false;
 		}
-		return verificacao;	
+		return verificacao;
 	}
 	public string GetCnpj(){
 		return cnpj;

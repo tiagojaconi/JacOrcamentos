@@ -81,7 +81,7 @@ class Orcamento{
 		cabeamento = (Convert.ToInt32(qtdCaboRede)+Convert.ToInt32(qtdCabo));
 		Console.Clear();
 		
-		Console.WriteLine("***ORÇAMENTO SOLICITADO***");
+		Console.WriteLine("\n***ORÇAMENTO SOLICITADO***");
 		Console.WriteLine("");
 		Console.WriteLine("Nome: "+nome);
 		if (tipoPessoa==1){
@@ -94,7 +94,6 @@ class Orcamento{
 		Console.WriteLine("Endereço: "+endereco);
 		
 		Console.WriteLine("\n***Produtos necessários***");
-
 
 		if (tipoServico ==1){
 
@@ -121,8 +120,7 @@ class Orcamento{
 			Console.WriteLine("Metragem Cabo de Rede: "+qtdCaboRede);
 			Console.WriteLine("Metragem Cabo de Alarme: "+qtdCabo);
 
-			valorServico = (((pontos+2.0f)*48.0f)+(230.0f)+(cabeamento*0.29f));
-			
+			valorServico = (((pontos+2.0f)*48.0f)+(230.0f)+(cabeamento*0.29f));	
 		}
 		Console.WriteLine("\nServiço de Instalação: R$ "+valorServico);
 	}	

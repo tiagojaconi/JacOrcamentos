@@ -20,8 +20,17 @@ class MainClass {
 		Console.WriteLine("\n**Dica: duvide sempre da qualidade do preço baixo, a dor de cabeça irá lhe acompanhar!!!**");
 
 		while (entrada==0){
-			Console.WriteLine("\nPreciso saber, quem é você? 1- Pessoa Fisica ou 2- Pessoa Juridica ");
-			entrada = Convert.ToInt32(Console.ReadLine());
+
+			try{
+				Console.WriteLine("\nPreciso saber, quem é você? 1- Pessoa Fisica ou 2- Pessoa Juridica ");
+				entrada = Convert.ToInt32(Console.ReadLine());
+			}catch (OverflowException qtdNumerosException){
+				Console.WriteLine("Informação Inválida");
+				entrada= 0;
+			}catch(FormatException letrasException){
+				Console.WriteLine("Informação Inválida");
+				entrada= 0;
+			}	
 
 			switch (entrada){
 				case 1:
@@ -37,60 +46,89 @@ class MainClass {
 						Console.WriteLine("O telefone informado é inválido, não use letras. Digite novamente: ");
 					}
 					orcamento1.SetEndereco();
-					Console.WriteLine("Informe o tipo de serviço que deseja? 1- Instalação de Câmeras ou 2- Instalação de Alarme.");
-					submenu = Convert.ToInt32(Console.ReadLine());
-					if(submenu==1){
-						while((qtdPontos==0)||(qtdPontos>32)){
-							Console.WriteLine("Informe quantos pontos de Câmeras quer instalar? Não deve ser superior a 32, neste caso contate o consultor!");
-							qtdPontos = Convert.ToInt32(Console.ReadLine());
-						}
-						Camera servico1 = new Camera(qtdPontos);
-						servico1.SetTipoServico(submenu);
-						servico1.SetQtdPontos(qtdPontos);
+					
+					while(submenu==0){
+						try{
+							Console.WriteLine("Informe o tipo de serviço que deseja? 1- Instalação de Câmeras ou 2- Instalação de Alarme.");
+							submenu = Convert.ToInt32(Console.ReadLine());
+						}catch (OverflowException qtdNumerosException){
+							Console.WriteLine("Informação Inválida");
+							submenu= 0;
+						}catch(FormatException letrasException){
+							Console.WriteLine("Informação Inválida");
+							submenu= 0;
+						}	
+						if(submenu==1){
+							while((qtdPontos==0)||(qtdPontos>32)){
+								try{
+									Console.WriteLine("Informe quantos pontos de Câmeras quer instalar? Não deve ser superior a 32, neste caso contate o consultor!");
+									qtdPontos = Convert.ToInt32(Console.ReadLine());
+								}catch (OverflowException qtdNumerosException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}catch(FormatException letrasException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}	
+							}
+							Camera servico1 = new Camera(qtdPontos);
+							servico1.SetTipoServico(submenu);
+							servico1.SetQtdPontos(qtdPontos);
 						
-						dados1escrever.WriteLine(entrada);
-						dados1escrever.WriteLine(orcamento1.GetCpf());
-						dados1escrever.WriteLine(orcamento1.GetNomeCliente());
-						dados1escrever.WriteLine("");//Espaço Razão Social 
-						dados1escrever.WriteLine(orcamento1.GetTelefoneCliente());
-						dados1escrever.WriteLine(orcamento1.GetEndereco());
-						dados1escrever.WriteLine(servico1.GetTipoServico());
-						dados1escrever.WriteLine(servico1.GetQtdPontos());
-						dados1escrever.WriteLine(servico1.GetQtdBnc());
-						dados1escrever.WriteLine(servico1.GetQtdP4());
-						dados1escrever.WriteLine(servico1.GetQtdCaixaProtecao());
-						dados1escrever.WriteLine(servico1.GetQtdCaboRede());
-						dados1escrever.WriteLine(servico1.GetQtdCaboCoaxial());
-						dados1escrever.WriteLine(servico1.GetTamanhoHd());
-						dados1escrever.WriteLine(servico1.GetModeloDvr());
-						dados1escrever.WriteLine(servico1.GetTamanhoFonte());
-						dados1escrever.Close();
-						dados1.Close();
+							dados1escrever.WriteLine(entrada);
+							dados1escrever.WriteLine(orcamento1.GetCpf());
+							dados1escrever.WriteLine(orcamento1.GetNomeCliente());
+							dados1escrever.WriteLine("");//Espaço Razão Social 
+							dados1escrever.WriteLine(orcamento1.GetTelefoneCliente());
+							dados1escrever.WriteLine(orcamento1.GetEndereco());
+							dados1escrever.WriteLine(servico1.GetTipoServico());
+							dados1escrever.WriteLine(servico1.GetQtdPontos());
+							dados1escrever.WriteLine(servico1.GetQtdBnc());
+							dados1escrever.WriteLine(servico1.GetQtdP4());
+							dados1escrever.WriteLine(servico1.GetQtdCaixaProtecao());
+							dados1escrever.WriteLine(servico1.GetQtdCaboRede());
+							dados1escrever.WriteLine(servico1.GetQtdCaboCoaxial());
+							dados1escrever.WriteLine(servico1.GetTamanhoHd());
+							dados1escrever.WriteLine(servico1.GetModeloDvr());
+							dados1escrever.WriteLine(servico1.GetTamanhoFonte());
+							dados1escrever.Close();
+							dados1.Close();
 
-					}else if(submenu==2){
+						}else if(submenu==2){
 							while((qtdPontos==0)||(qtdPontos>18)){
-							Console.WriteLine("Informe quantos pontos de Sensores quer instalar? Não deve ser superior a 18, neste caso contate o consultor!");
-							qtdPontos = Convert.ToInt32(Console.ReadLine());
-						}
-						Alarme servico1 = new Alarme(qtdPontos);
-						servico1.SetTipoServico(submenu);
-						servico1.SetQtdPontos(qtdPontos);
+								try{
+									Console.WriteLine("Informe quantos pontos de Sensores quer instalar? Não deve ser superior a 18, neste caso contate o consultor!");
+									qtdPontos = Convert.ToInt32(Console.ReadLine());
+								}catch (OverflowException qtdNumerosException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}catch(FormatException letrasException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}	
+							}
+							Alarme servico1 = new Alarme(qtdPontos);
+							servico1.SetTipoServico(submenu);
+							servico1.SetQtdPontos(qtdPontos);
 
-						dados1escrever.WriteLine(entrada);
-						dados1escrever.WriteLine(orcamento1.GetCpf());
-						dados1escrever.WriteLine(orcamento1.GetNomeCliente());
-						dados1escrever.WriteLine("");//Espaço Razão Social 
-						dados1escrever.WriteLine(orcamento1.GetTelefoneCliente());
-						dados1escrever.WriteLine(orcamento1.GetEndereco());
-						dados1escrever.WriteLine(servico1.GetTipoServico());
-						dados1escrever.WriteLine(servico1.GetQtdPontos());
-						dados1escrever.WriteLine(servico1.GetQtdSirene());
-						dados1escrever.WriteLine(servico1.GetQtdBateria());
-						dados1escrever.WriteLine(servico1.GetQtdCaboRede());
-						dados1escrever.WriteLine(servico1.GetQtdCaboAlarme());
-						dados1escrever.WriteLine(servico1.GetModeloCentral());
-						dados1escrever.Close();
-						dados1.Close();
+							dados1escrever.WriteLine(entrada);
+							dados1escrever.WriteLine(orcamento1.GetCpf());
+							dados1escrever.WriteLine(orcamento1.GetNomeCliente());
+							dados1escrever.WriteLine("");//Espaço Razão Social 
+							dados1escrever.WriteLine(orcamento1.GetTelefoneCliente());
+							dados1escrever.WriteLine(orcamento1.GetEndereco());
+							dados1escrever.WriteLine(servico1.GetTipoServico());
+							dados1escrever.WriteLine(servico1.GetQtdPontos());
+							dados1escrever.WriteLine(servico1.GetQtdSirene());
+							dados1escrever.WriteLine(servico1.GetQtdBateria());
+							dados1escrever.WriteLine(servico1.GetQtdCaboRede());
+							dados1escrever.WriteLine(servico1.GetQtdCaboAlarme());
+							dados1escrever.WriteLine(servico1.GetModeloCentral());
+							dados1escrever.Close();
+							dados1.Close();
+						}else{
+							submenu =0;
+						}
 					}
 				break;
 				case 2:
@@ -106,61 +144,89 @@ class MainClass {
 						Console.WriteLine("O telefone informado é inválido, não use letras. Digite novamente: ");
 					}
 					orcamento2.SetEndereco();
-					Console.WriteLine("Informe o tipo de serviço que deseja? 1- Instalação de Câmeras ou 2- Instalação de Alarme.");
-					submenu = Convert.ToInt32(Console.ReadLine());
-					if(submenu==1){
-						while((qtdPontos==0)||(qtdPontos>32)){
-							Console.WriteLine("Informe quantos pontos de Câmeras quer instalar? Não deve ser superior a 32, neste caso contate o consultor! ");
-							qtdPontos = Convert.ToInt32(Console.ReadLine());
-						}
-						Camera servico2 = new Camera(qtdPontos);
-						servico2.SetTipoServico(submenu);
-						servico2.SetQtdPontos(qtdPontos);
 
-						dados2escrever.WriteLine(entrada);
-						dados2escrever.WriteLine(orcamento2.GetCnpj());
-						dados2escrever.WriteLine(orcamento2.GetNomeCliente());
-						dados2escrever.WriteLine(orcamento2.GetRazaoSocial());
-						dados2escrever.WriteLine(orcamento2.GetTelefoneCliente());
-						dados2escrever.WriteLine(orcamento2.GetEndereco());
-						dados2escrever.WriteLine(servico2.GetTipoServico());
-						dados2escrever.WriteLine(servico2.GetQtdPontos());
-						dados2escrever.WriteLine(servico2.GetQtdBnc());
-						dados2escrever.WriteLine(servico2.GetQtdP4());
-						dados2escrever.WriteLine(servico2.GetQtdCaixaProtecao());
-						dados2escrever.WriteLine(servico2.GetQtdCaboRede());
-						dados2escrever.WriteLine(servico2.GetQtdCaboCoaxial());
-						dados2escrever.WriteLine(servico2.GetTamanhoHd());
-						dados2escrever.WriteLine(servico2.GetModeloDvr());
-						dados2escrever.WriteLine(servico2.GetTamanhoFonte());
-						dados2escrever.Close();
-						dados2.Close();
+					while(submenu==0){
+						try{
+							Console.WriteLine("Informe o tipo de serviço que deseja? 1- Instalação de Câmeras ou 2- Instalação de Alarme.");
+							submenu = Convert.ToInt32(Console.ReadLine());
+						}catch (OverflowException qtdNumerosException){
+							Console.WriteLine("Informação Inválida");
+							submenu= 0;
+						}catch(FormatException letrasException){
+							Console.WriteLine("Informação Inválida");
+							submenu= 0;
+						}	
+						if(submenu==1){
+							while((qtdPontos==0)||(qtdPontos>32)){
+								try{
+									Console.WriteLine("Informe quantos pontos de Câmeras quer instalar? Não deve ser superior a 32, neste caso contate o consultor!");
+									qtdPontos = Convert.ToInt32(Console.ReadLine());
+								}catch (OverflowException qtdNumerosException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}catch(FormatException letrasException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}	
+							}
+							Camera servico2 = new Camera(qtdPontos);
+							servico2.SetTipoServico(submenu);
+							servico2.SetQtdPontos(qtdPontos);
+
+							dados2escrever.WriteLine(entrada);
+							dados2escrever.WriteLine(orcamento2.GetCnpj());
+							dados2escrever.WriteLine(orcamento2.GetNomeCliente());
+							dados2escrever.WriteLine(orcamento2.GetRazaoSocial());
+							dados2escrever.WriteLine(orcamento2.GetTelefoneCliente());
+							dados2escrever.WriteLine(orcamento2.GetEndereco());
+							dados2escrever.WriteLine(servico2.GetTipoServico());
+							dados2escrever.WriteLine(servico2.GetQtdPontos());
+							dados2escrever.WriteLine(servico2.GetQtdBnc());
+							dados2escrever.WriteLine(servico2.GetQtdP4());
+							dados2escrever.WriteLine(servico2.GetQtdCaixaProtecao());
+							dados2escrever.WriteLine(servico2.GetQtdCaboRede());
+							dados2escrever.WriteLine(servico2.GetQtdCaboCoaxial());
+							dados2escrever.WriteLine(servico2.GetTamanhoHd());
+							dados2escrever.WriteLine(servico2.GetModeloDvr());
+							dados2escrever.WriteLine(servico2.GetTamanhoFonte());
+							dados2escrever.Close();
+							dados2.Close();
 						
-					}else if(submenu==2){
+						}else if(submenu==2){
+							while((qtdPontos==0)||(qtdPontos>18)){
+								try{
+									Console.WriteLine("Informe quantos pontos de Sensores quer instalar? Não deve ser superior a 18, neste caso contate o consultor!");
+									qtdPontos = Convert.ToInt32(Console.ReadLine());
+								}catch (OverflowException qtdNumerosException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}catch(FormatException letrasException){
+									Console.WriteLine("Informação Inválida");
+									qtdPontos= 0;
+								}	
+							}
+							Alarme servico2 = new Alarme(qtdPontos);
+							servico2.SetTipoServico(submenu);
+							servico2.SetQtdPontos(qtdPontos);
 
-						while((qtdPontos==0)||(qtdPontos>18)){
-							Console.WriteLine("Informe quantos pontos de Sensores quer instalar? Não deve ser superior a 18, neste caso contate o consultor! ");
-							qtdPontos = Convert.ToInt32(Console.ReadLine());
+							dados2escrever.WriteLine(entrada);
+							dados2escrever.WriteLine(orcamento2.GetCnpj());
+							dados2escrever.WriteLine(orcamento2.GetNomeCliente());
+							dados2escrever.WriteLine(orcamento2.GetRazaoSocial());
+							dados2escrever.WriteLine(orcamento2.GetTelefoneCliente());
+							dados2escrever.WriteLine(orcamento2.GetEndereco());
+							dados2escrever.WriteLine(servico2.GetTipoServico());
+							dados2escrever.WriteLine(servico2.GetQtdPontos());
+							dados2escrever.WriteLine(servico2.GetQtdSirene());
+							dados2escrever.WriteLine(servico2.GetQtdBateria());
+							dados2escrever.WriteLine(servico2.GetQtdCaboRede());
+							dados2escrever.WriteLine(servico2.GetQtdCaboAlarme());
+							dados2escrever.WriteLine(servico2.GetModeloCentral());
+							dados2escrever.Close();
+							dados2.Close();
+						}else{
+							submenu =0;
 						}
-						Alarme servico2 = new Alarme(qtdPontos);
-						servico2.SetTipoServico(submenu);
-						servico2.SetQtdPontos(qtdPontos);
-
-						dados2escrever.WriteLine(entrada);
-						dados2escrever.WriteLine(orcamento2.GetCnpj());
-						dados2escrever.WriteLine(orcamento2.GetNomeCliente());
-						dados2escrever.WriteLine(orcamento2.GetRazaoSocial());
-						dados2escrever.WriteLine(orcamento2.GetTelefoneCliente());
-						dados2escrever.WriteLine(orcamento2.GetEndereco());
-						dados2escrever.WriteLine(servico2.GetTipoServico());
-						dados2escrever.WriteLine(servico2.GetQtdPontos());
-						dados2escrever.WriteLine(servico2.GetQtdSirene());
-						dados2escrever.WriteLine(servico2.GetQtdBateria());
-						dados2escrever.WriteLine(servico2.GetQtdCaboRede());
-						dados2escrever.WriteLine(servico2.GetQtdCaboAlarme());
-						dados2escrever.WriteLine(servico2.GetModeloCentral());
-						dados2escrever.Close();
-						dados2.Close();
 					}
 				break;
 				default:
@@ -173,21 +239,25 @@ class MainClass {
 
 		Orcamento meuOrcamento = new Orcamento();
 		meuOrcamento.GerarOrcamento(entrada);
-
-		Console.WriteLine ("\nValor correspondente apenas a mão de obra, quer proseguir para contato e orçamento completo?");
 		
 		entrada = 0;
 		while((entrada!=1)&&(entrada!=2)){
-			Console.WriteLine ("\n1- Sim, preciso muito. Ou 2- Não, ficou muito caro.");
-			entrada = Convert.ToInt32(Console.ReadLine());
+			try{
+				Console.WriteLine ("\nValor correspondente apenas a mão de obra, quer proseguir para contato e orçamento completo?");
+				Console.WriteLine ("\n1- Sim, preciso muito. Ou 2- Não, ficou muito caro.");
+				entrada = Convert.ToInt32(Console.ReadLine());
+			}catch (OverflowException qtdNumerosException){
+				Console.WriteLine("Informação Inválida");
+				entrada= 0;
+			}catch(FormatException letrasException){
+				Console.WriteLine("Informação Inválida");
+				entrada= 0;
+			}	
 		}
 		if(entrada==1){
-
-			Console.WriteLine("***Parabéns, vamos entrar em contato... Vamos preparar um projeto especial para você!!!");
-			
+			Console.WriteLine("***Parabéns, vamos entrar em contato... Vamos preparar um projeto especial para você!!!***");
 		}else{
-
-			throw new ArgumentException("Cliente preocupado com valor e não com Segurança!!!");
+			Console.WriteLine("***Lamentamos, espero que não tenha problemas futuros... mas caso tenha, estamos à disposição!!!***");
 		}
   }
 }
